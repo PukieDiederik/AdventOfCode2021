@@ -415,5 +415,5 @@ obj/
 .history/
 
 # custom
-.input/
+input
 .input/*
