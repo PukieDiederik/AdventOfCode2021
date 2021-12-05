@@ -35,6 +35,46 @@ namespace AoC{
             }
         }
 
+        public static void Part2() {
+            //read the file
+            string[] lines = System.IO.File.ReadAllLines("./input/day4");
+            for(int i = 0; i < lines.Length; i++ ) lines[i] = lines[i].Trim();
+            //parse input...
+            //split the first numbers
+            string[] splitNum = lines[0].Split(',');
+            int[] callingNumbers = new int[splitNum.Length];
+            for(int i =0; i < splitNum.Length; i++) callingNumbers[i] = Int32.Parse(splitNum[i]);
+
+            BingoCard[] cards = new BingoCard[(lines.Length -2)/6];
+            //parsing the sudokus
+            for(int i = 0; i < (lines.Length -2)/6; i++){
+                int[,] res = new int[5,5];
+                for(int j = 0; j < 5; j++){
+                    string[] s = lines[i*6 + j + 2].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                    for(int k = 0; k < 5; k++){
+                        res[j,k] = Int32.Parse(s[k]);
+                    }
+                }
+                cards[i] = new BingoCard(res);
+            }
+
+            bool[] isCardCompleted= new bool[cards.Length];
+            int cardsCompleted = 0;
+
+            for (int callNum = 0; callNum < callingNumbers.Length; callNum++){
+                for (int i = 0; i < cards.Length; i++){
+                    if(!isCardCompleted[i]){
+                        int? bingo = cards[i].setNum(callingNumbers[callNum]);
+                        if(bingo != null) {
+                            isCardCompleted[i] = true;
+                            cardsCompleted++;
+                            Console.WriteLine(bingo * callingNumbers[callNum]);
+                        }
+                    }
+                }    
+            }
+        }
+
         class BingoCard {
             int[,] numbers;
             bool[,] isChecked;
