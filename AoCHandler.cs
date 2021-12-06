@@ -34,6 +34,12 @@ namespace AoC {
                 case "5-2":
                     Day5.Part2();
                     break;
+                case "6-1":
+                    Day6.Part1();
+                    break;
+                case "6-2":
+                    Day6.Part2();
+                    break;
 
                 default:
                     Console.WriteLine("[ERR] Did not recognize that function");
