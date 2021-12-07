@@ -45,16 +45,7 @@ namespace AoC{
                 amountOFish[7] = amountOFish[8];
                 amountOFish[8] = newFish;
             }
-            Console.WriteLine($"t 0 : {amountOFish[0]}");
-            Console.WriteLine($"t 1 : {amountOFish[1]}");
-            Console.WriteLine($"t 2 : {amountOFish[2]}");
-            Console.WriteLine($"t 3 : {amountOFish[3]}");
-            Console.WriteLine($"t 4 : {amountOFish[4]}");
-            Console.WriteLine($"t 5 : {amountOFish[5]}");
-            Console.WriteLine($"t 6 : {amountOFish[6]}");
-            Console.WriteLine($"t 7 : {amountOFish[7]}");
-            Console.WriteLine($"t 8 : {amountOFish[8]}");
-
+            
             Console.WriteLine(amountOFish[0] + amountOFish[1] + amountOFish[2] + amountOFish[3] + amountOFish[4] +
                               amountOFish[5] + amountOFish[6] + amountOFish[7] + amountOFish[8]);
 
