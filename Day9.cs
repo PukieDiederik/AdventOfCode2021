@@ -65,7 +65,7 @@ namespace AoC{
                        heightMap[x,y] < heightMap[x,y-1] &&
                        heightMap[x,y] < heightMap[x,y+1]){
                         basinPoints.Add(new Point(x,y));
-                       }
+                    }
                 }
             }
 
