@@ -44,6 +44,62 @@ namespace AoC{
 
             Console.WriteLine(squidExplosionAmount);
         }
+
+        public static void Part2() {
+            //read the file
+            string[] lines = System.IO.File.ReadAllLines("./input/day11");
+            for(int i = 0; i < lines.Length; i++ ) lines[i] = lines[i].Trim();
+            int[,] squidMap = new int[lines[0].Length,lines.Length];
+            for (int y = 0; y < lines.Length; y++){
+                for (int x = 0; x < lines[0].Length; x++){
+                    squidMap[x,y] = int.Parse(lines[y][x].ToString());
+                }
+            }
+            //process the input
+            bool isSynced = false;
+            int j = 0;
+            while(!isSynced){
+                j++;
+                isSynced = true;
+                for (int x = 0; x < squidMap.GetLength(0); x++) {
+                    for (int y = 0; y < squidMap.GetLength(0); y++) {
+                        if(squidMap[x,y] > 0){
+                            isSynced = false;
+                            break;
+                        }
+                    }
+                    if(!isSynced) break;
+                } if(isSynced) Console.WriteLine( j - 1);
+
+                Stack<int[]> posToUpdate = new Stack<int[]>();
+                
+                for (int x = 0; x < squidMap.GetLength(0); x++) {
+                    for (int y = 0; y < squidMap.GetLength(0); y++) {
+                        squidMap[x,y]++;
+                        if(squidMap[x,y] > 9) { 
+                            posToUpdate.Push(new int[] {x,y});
+                            squidMap[x,y] = 0;
+                        }
+                    }
+                }
+
+                while(posToUpdate.Count() > 0){
+                    int[] pos = posToUpdate.Pop();
+                    squidMap[pos[0],pos[1]] = 0;
+                        
+                    //trigger each direction
+                    UpdatePos(pos[0]+1,pos[1], squidMap, posToUpdate);
+                    UpdatePos(pos[0]-1,pos[1], squidMap, posToUpdate);
+                    UpdatePos(pos[0],pos[1]+1, squidMap, posToUpdate);
+                    UpdatePos(pos[0],pos[1]-1, squidMap, posToUpdate);
+                    UpdatePos(pos[0]+1,pos[1]+1, squidMap, posToUpdate);
+                    UpdatePos(pos[0]+1,pos[1]-1, squidMap, posToUpdate);
+                    UpdatePos(pos[0]-1,pos[1]+1, squidMap, posToUpdate);
+                    UpdatePos(pos[0]-1,pos[1]-1, squidMap, posToUpdate);
+                }
+            }
+        }
+        
         static bool IsInBounds(int x, int y, int xbounds, int ybounds){
             if(x >= 0 && x < xbounds
             && y >= 0 && y < ybounds) return true;
