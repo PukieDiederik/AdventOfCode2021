@@ -8,7 +8,7 @@ namespace AoC{
 
             Dictionary<string, Node> nodes = new Dictionary<string, Node>();
             for(int i = 0; i < lines.Length; i++){
-                Node result;
+                Node? result;
                 if(nodes.TryGetValue(input[i][0], out result)){
                     result.connections.Add(input[i][1]);
                 } else {
@@ -53,7 +53,7 @@ namespace AoC{
 
             Dictionary<string, Node> nodes = new Dictionary<string, Node>();
             for(int i = 0; i < lines.Length; i++){
-                Node result;
+                Node? result;
                 if(nodes.TryGetValue(input[i][0], out result)){
                     result.connections.Add(input[i][1]);
                 } else {
