@@ -1,3 +1,4 @@
+using System.Diagnostics;
 namespace AoC{
     class Day14 {
         public static void Part1() {
@@ -43,6 +44,7 @@ namespace AoC{
         }
 
         public static void Part2() {
+
             //read the file
             string[] lines = System.IO.File.ReadAllLines("./input/day14");
             for(int i = 0; i < lines.Length; i++ ) lines[i] = lines[i].Trim();
@@ -72,7 +74,7 @@ namespace AoC{
             }
 
             KeyValuePair<char,ulong> most  = new KeyValuePair<char,ulong>('.', 0);
-            KeyValuePair<char,ulong> least = new KeyValuePair<char,ulong>('.', 0x7fffffffffffffff);
+            KeyValuePair<char,ulong> least = new KeyValuePair<char,ulong>('.', 0xffffffffffffffff);
 
             Dictionary<char, ulong> charC = new Dictionary<char, ulong>();
             for(int i = 0; i < keys.Length; i++){
